@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elgautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 19:54:53 by elgautie          #+#    #+#             */
-/*   Updated: 2024/12/17 14:07:33 by elgautie         ###   ########.fr       */
+/*   Created: 2024/12/17 15:00:14 by elgautie          #+#    #+#             */
+/*   Updated: 2024/12/17 17:09:47 by elgautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*last;
+
+	last = ft_lstlast(*lst);
+	printf("last->content : %s$\n", (char *)last->content);
+	while (last != *lst)
+	{
+		ft_lstdelone(last, del);
+		last = ft_lstlast(*lst);
+		printf("last->content : %s$\n", (char *)last->content);
+	}
+	ft_lstdelone(last, del);
 }
 
-/*
 int	main(void)
 {
-	t_list	*new;
 	t_list	*first;
 	t_list	*second;
+	t_list	*third;
 
-	new = ft_lstnew("0");
 	first = ft_lstnew("1");
-	second = ft_lstnew("2"); 
-	first->next = second;
-	printf("%s$\n", (char *)first->next->content);
-	ft_lstadd_front(&first, new);
-	printf("%s$", (char *)new->next->content);
-	printf("%s$", (char *)new->next->next->content);
-	
+	second = ft_lstnew("2");
+	third = ft_lstnew("3");
+	ft_lstadd_back(&first, second);
+	ft_lstadd_back(&first, third);
+	ft_lstclear(&first, free);
+	printf("%p$\n", (void *)first);
 	return (0);
-}*/
+}
