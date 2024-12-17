@@ -6,7 +6,7 @@
 /*   By: elgautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:00:14 by elgautie          #+#    #+#             */
-/*   Updated: 2024/12/17 17:09:47 by elgautie         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:54:11 by elgautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	ft_lstdelone(last, del);
 }
 
+/*
 int	main(void)
 {
 	t_list	*first;
@@ -41,4 +42,4 @@ int	main(void)
 	ft_lstclear(&first, free);
 	printf("%p$\n", (void *)first);
 	return (0);
-}
+}*/
